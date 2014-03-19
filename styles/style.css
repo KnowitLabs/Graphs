@@ -1,0 +1,16 @@
+.col-lg-9 .canvasjs,
+.col-md-9 .canvasjs,
+.col-md-8 .canvasjs,
+.col-lg-8 .canvasjs {
+	height: 400px; 
+}
+
+.col-md-6 .canvasjs,
+.col-lg-6 .canvasjs {
+	height: 350px; 
+}
+
+.col-md-4 .canvasjs,
+.col-lg-4 .canvasjs {
+	height: 300px; 
+}
