@@ -1,4 +1,4 @@
-Graphs Component
+Graphs Component 0.9
 ======
 
 This is a CanvasJS Implementation made to simplify the use of CanvasJS in web projects.
