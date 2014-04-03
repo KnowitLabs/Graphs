@@ -5,7 +5,11 @@ var graphs = {
 
 			// Loop through all the graphs and render them
 			$('.canvasjs').each(function (i) {
-				graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'))
+				if ($(this).data('graphtype') === 'IncompleteDonut') {
+					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'))
+				} else {
+					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'))
+				}
 			});
 		}
 	},
@@ -17,10 +21,6 @@ var graphs = {
 		});
 		$ajaxCall.done(function (response) {
 			var chart = new CanvasJS.Chart(graphid, {
-				title: {
-					verticalAlign: 'top',
-					horizontalAlign: 'left'
-				},
 				data: [{
 					type: graphtype,
 					startAngle: 20,
@@ -34,6 +34,31 @@ var graphs = {
 		$ajaxCall.fail(function () {
 			$('#graphid').html('Unable to draw graph. Msg: ' + $ajaxCall.responseText);
 		});
+	},
 
+	// Only used to draw an incomplete donut, so only pass ONE value to this
+	drawIncompleteDonut: function (graphid, value, color) {
+		var chart = new CanvasJS.Chart(graphid, {
+			toolTip: {
+				enabled: false,
+			},
+			data: [{
+				type: "doughnut",
+				startAngle: 90,
+				dataPoints: [{
+					y: value,
+					indexLabel: null,
+					color: color
+				}, {
+					y: (100 - value),
+					indexLabel: null,
+					color: 'transparent'
+				}]
+			}]
+		});
+
+		chart.render();
+		$('#' + graphid + '-total').html(value + '%');
 	}
+
 }

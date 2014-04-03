@@ -39,6 +39,16 @@ In this first release the JSON data is very simple and not much can be modified.
   }]
 ```
 
+####Exception "Gaping" Donut Chart
+```
+<div class="canvasjs" id="graph4" data-graphtype="IncompleteDonut" data-value="42" data-color="#edc600"></div>
+<div id="graph4-total" class="IncompleteDonut_value">300</div>
+<div id="graph4-label" class="IncompleteDonut_label">Candy</div>
+```
+* data-value: The Value. Only one value is possible with this special Donut
+* data-color: The color of this donut.
+* No JSON is required or possible with this special donut chart.
+
 ###Notice
 Note that CanvasJS is **not** open source. It's under a [different license](http://canvasjs.com/license-canvasjs/)
 
