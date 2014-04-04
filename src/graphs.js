@@ -21,6 +21,7 @@ var graphs = {
 		});
 		$ajaxCall.done(function (response) {
 			var chart = new CanvasJS.Chart(graphid, {
+				backgroundColor: 'transparent',
 				data: [{
 					type: graphtype,
 					startAngle: 20,
@@ -39,6 +40,7 @@ var graphs = {
 	// Only used to draw an incomplete donut, so only pass ONE value to this
 	drawIncompleteDonut: function (graphid, value, color) {
 		var chart = new CanvasJS.Chart(graphid, {
+			backgroundColor: 'transparent',
 			toolTip: {
 				enabled: false,
 			},
