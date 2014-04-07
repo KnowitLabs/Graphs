@@ -14,14 +14,30 @@ var graphs = {
 		}
 	},
 
+	createColorset: function (colors) {
+		$colors = colors.split(',');
+		$colorSetString = [];
+		$.each($colors, function (index, val) {
+			$colorSetString.push('' + val + '');
+		});
+		return $colorSetString;
+	},
+
 	draw: function (graphid, graphtype, indataurl) {
 		$ajaxCall = $.ajax({
 			url: indataurl,
 			dataType: 'json'
 		});
 		$ajaxCall.done(function (response) {
+			if ($('.canvasjs-colorset').length > 0) {
+				$colorset = $('.canvasjs-colorset').data('colorset');
+				$colorsetname = $('.canvasjs-colorset').data('colorsetname');
+				$colorset = graphs.createColorset($colorset);
+				CanvasJS.addColorSet($colorsetname, $colorset);
+			}
 			var chart = new CanvasJS.Chart(graphid, {
 				backgroundColor: 'transparent',
+				colorSet: $colorsetname,
 				data: [{
 					type: graphtype,
 					startAngle: 20,
