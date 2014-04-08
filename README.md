@@ -1,4 +1,4 @@
-Graphs Component 0.9.2
+Graphs Component 0.9.4
 ======
 
 This is a CanvasJS Implementation made to simplify the use of CanvasJS in web projects.
@@ -6,6 +6,17 @@ This is a CanvasJS Implementation made to simplify the use of CanvasJS in web pr
 ###How it works
 The script search the soruce for divs with the CSS class "canvasjs" and reads their respective data attributes.
 
+####General settings
+```
+<input type="hidden" class="canvasjs-settings" data-colorsetname="default" data-fontsize="20" data-fontfamily="Arial" data-colorset="#003d59,#ecc500,#d3693b,#a6bbc5,#4c778a,#26a489,#dc825a,#118baf,#419dbe,#62b29d,#333332" />
+```
+* class: Must be set to "canvasjs-settings" in order to the script to identify the element.
+* data-fontsize: Font size, integer value
+* data-fontfamily: Font family, string value
+* data-colorset: A list of colors in hex format
+* data-colorsetname: Name of the color set
+
+####Graph specific settings
 ```
 <div class="canvasjs" id="graph3" data-graphtype="column" data-stats="json/dummy-graphdata.json" data-title="Title of graph"></div>
 ```

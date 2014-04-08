@@ -16,7 +16,7 @@ var graphs = {
 					if ($('.canvasjs-settings').length > 0) {
 						$colorset = $('.canvasjs-settings').data('colorset');
 						graphs.colorsetname = $('.canvasjs-settings').data('colorsetname');
-						graphs.colorset = graphs.createColorset($colorset);
+						graphs.createColorset($colorset);
 						graphs.fontsize = $('.canvasjs-settings').data('fontsize');
 						graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
 					}
@@ -32,7 +32,7 @@ var graphs = {
 		$.each($colors, function (index, val) {
 			$colorSetString.push('' + val + '');
 		});
-		return $colorSetString;
+		graphs.colorset = $colorSetString;
 	},
 
 	draw: function (graphid, graphtype, indataurl, title) {
