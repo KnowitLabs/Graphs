@@ -1,4 +1,9 @@
 var graphs = {
+	fontsize: 20,
+	fontfamily: 'Arial',
+	colorsetname: 'default',
+	colorset: null,
+
 	init: function () {
 		// Only init if a graph is detected. 
 		if ($('.canvasjs').length > 0) {
@@ -8,6 +13,13 @@ var graphs = {
 				if ($(this).data('graphtype') === 'IncompleteDonut') {
 					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'))
 				} else {
+					if ($('.canvasjs-settings').length > 0) {
+						$colorset = $('.canvasjs-settings').data('colorset');
+						graphs.colorsetname = $('.canvasjs-settings').data('colorsetname');
+						graphs.colorset = graphs.createColorset($colorset);
+						graphs.fontsize = $('.canvasjs-settings').data('fontsize');
+						graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
+					}
 					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'))
 				}
 			});
@@ -29,17 +41,15 @@ var graphs = {
 			dataType: 'json'
 		});
 		$ajaxCall.done(function (response) {
-			if ($('.canvasjs-colorset').length > 0) {
-				$colorset = $('.canvasjs-colorset').data('colorset');
-				$colorsetname = $('.canvasjs-colorset').data('colorsetname');
-				$colorset = graphs.createColorset($colorset);
-				CanvasJS.addColorSet($colorsetname, $colorset);
-			}
+			CanvasJS.addColorSet(graphs.colorsetname, graphs.colorset);
+
 			var chart = new CanvasJS.Chart(graphid, {
 				backgroundColor: 'transparent',
-				colorSet: $colorsetname,
+				colorSet: graphs.colorsetname,
 				title: {
-					text: title
+					text: title,
+					fontSize: graphs.fontsize,
+					fontFamily: graphs.fontfamily,
 				},
 				data: [{
 					type: graphtype,
