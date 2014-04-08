@@ -8,7 +8,7 @@ var graphs = {
 				if ($(this).data('graphtype') === 'IncompleteDonut') {
 					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'))
 				} else {
-					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'))
+					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'))
 				}
 			});
 		}
@@ -23,7 +23,7 @@ var graphs = {
 		return $colorSetString;
 	},
 
-	draw: function (graphid, graphtype, indataurl) {
+	draw: function (graphid, graphtype, indataurl, title) {
 		$ajaxCall = $.ajax({
 			url: indataurl,
 			dataType: 'json'
@@ -38,6 +38,9 @@ var graphs = {
 			var chart = new CanvasJS.Chart(graphid, {
 				backgroundColor: 'transparent',
 				colorSet: $colorsetname,
+				title: {
+					text: title
+				},
 				data: [{
 					type: graphtype,
 					startAngle: 20,
