@@ -1,4 +1,4 @@
-Graphs Component 0.9
+Graphs Component 0.9.2
 ======
 
 This is a CanvasJS Implementation made to simplify the use of CanvasJS in web projects.
@@ -7,12 +7,13 @@ This is a CanvasJS Implementation made to simplify the use of CanvasJS in web pr
 The script search the soruce for divs with the CSS class "canvasjs" and reads their respective data attributes.
 
 ```
-<div class="canvasjs" id="graph3" data-graphtype="column" data-stats="json/dummy-graphdata.json"></div>
+<div class="canvasjs" id="graph3" data-graphtype="column" data-stats="json/dummy-graphdata.json" data-title="Title of graph"></div>
 ```
 
 * id: This must be unique and is used to separate the graps
 * data-graphtype: specify the type of graph you wish to use. Please see the [documentation](http://canvasjs.com/html5-javascript-column-chart/)
 * data-stats: The JSON data to populate the graph.
+* data-title: The name/title of the graph
 
 ####The JSON data
 In this first release the JSON data is very simple and not much can be modified.
