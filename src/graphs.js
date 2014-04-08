@@ -4,6 +4,7 @@ var graphs = {
 	fontcolor: '#333333',
 	colorsetname: 'default',
 	colorset: null,
+	fontweight: 'normal',
 
 	init: function () {
 		// Only init if a graph is detected. 
@@ -21,6 +22,7 @@ var graphs = {
 						graphs.fontsize = $('.canvasjs-settings').data('fontsize');
 						graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
 						graphs.fontcolor = $('.canvasjs-settings').data('fontcolor');
+						graphs.fontweight = $('.canvasjs-settings').data('fontweight');
 					}
 					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'))
 				}
@@ -52,7 +54,8 @@ var graphs = {
 					text: title,
 					fontSize: graphs.fontsize,
 					fontFamily: graphs.fontfamily,
-					fontColor: graphs.fontcolor
+					fontColor: graphs.fontcolor,
+					fontWeight: graphs.fontweight
 				},
 				data: [{
 					type: graphtype,
