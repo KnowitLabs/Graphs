@@ -1,6 +1,7 @@
 var graphs = {
 	fontsize: 20,
 	fontfamily: 'Arial',
+	fontcolor: '#333333',
 	colorsetname: 'default',
 	colorset: null,
 
@@ -19,6 +20,7 @@ var graphs = {
 						graphs.createColorset($colorset);
 						graphs.fontsize = $('.canvasjs-settings').data('fontsize');
 						graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
+						graphs.fontcolor = $('.canvasjs-settings').data('fontcolor');
 					}
 					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'))
 				}
@@ -50,6 +52,7 @@ var graphs = {
 					text: title,
 					fontSize: graphs.fontsize,
 					fontFamily: graphs.fontfamily,
+					fontColor: graphs.fontcolor
 				},
 				data: [{
 					type: graphtype,
