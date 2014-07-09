@@ -3,21 +3,17 @@
 <!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<script>  
+<script>
 if (/*@cc_on!@*/false && document.documentMode === 10) {
     document.documentElement.className+=' ie10';
 }
 </script>
   <head>
     <meta charset="utf-8">
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-    <![endif]-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="dependencies/jquery/dist/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="lib/canvasjs.min.js"></script>
-    <script src="src/graphs.js"></script>
+    <script src="../dist/jquery.Graphs.min.js"></script>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -30,20 +26,36 @@ if (/*@cc_on!@*/false && document.documentMode === 10) {
 
         <div class="row">
         	<div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
-        		<div class="canvasjs" id="graph1" data-graphtype="doughnut" data-stats="json/dummy-graphdata.json" data-title="Lorem ipsum"></div>
+        		<div class="canvasjs" id="graph1" data-graphtype="doughnut" data-stats="json/dummy-graphdata.json" data-title="Lorem doughnut"></div>
         	</div>
 
         	<div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
-        		<div class="canvasjs" id="graph2" data-graphtype="pie" data-stats="json/dummy-graphdata.json" data-title="Lorem ipsum"></div>
+        		<div class="canvasjs" id="graph2" data-graphtype="pie" data-stats="json/dummy-graphdata.json" data-title="Lorem pie 1"></div>
         	</div>
 
           <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
-            <div class="canvasjs" id="graph22" data-graphtype="pie" data-stats="json/dummy-graphdata-muchdata.json" data-title="Lorem ipsum"></div>
+            <div class="canvasjs" id="graph22" data-graphtype="pie" data-stats="json/dummy-graphdata-muchdata.json" data-title="Lorem pie 2"></div>
           </div>
 
         	<div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
-        		<div class="canvasjs" id="graph3" data-graphtype="column" data-stats="json/dummy-graphdata-columns.json" data-title="Lorem ipsum"></div>
+        		<div class="canvasjs" id="graph3" data-graphtype="column" data-stats="json/dummy-graphdata-columns.json" data-title="Lorem columns"></div>
         	</div>
+
+          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
+            <div class="canvasjs" id="graph5" data-graphtype="pie" data-title="Alternative data source pie">
+              <div class="graphdata" data-label="Playstation" data-y="357" data-x="10" data-color="#003d59"></div>
+              <div class="graphdata" data-label="Xbox" data-y="400" data-x="10" data-color="#118baf"></div>
+              <div class="graphdata" data-label="Nintendo" data-y="1358" data-x="10" data-color="#26a489"></div>
+            </div>
+          </div>
+
+          <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
+            <div class="canvasjs" id="graph6" data-graphtype="column" data-title="Alternative data source columns">
+              <div class="graphdata" data-label="Playstation" data-y="357" data-color="#003d59"></div>
+              <div class="graphdata" data-label="Xbox" data-y="400" data-color="#118baf"></div>
+              <div class="graphdata" data-label="Nintendo" data-y="1358" data-color="#26a489"></div>
+            </div>
+          </div>
 
           <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
             <div class="canvasjs" id="graph4" data-graphtype="IncompleteDonut" data-value="42" data-color="#edc600"></div>

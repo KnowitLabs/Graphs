@@ -1,3 +1,6 @@
+/*! Graphs - v1.0.0 - 2014-07-09
+* https://github.com/KnowitLabs/Graphs
+* Copyright (c) 2014 Andreas Norman; Licensed MIT */
 var graphs = {
 	fontsize: 20,
 	fontfamily: 'Arial',
@@ -7,13 +10,13 @@ var graphs = {
 	fontweight: 'normal',
 
 	init: function () {
-		// Only init if a graph is detected. 
+		// Only init if a graph is detected.
 		if ($('.canvasjs').length > 0) {
 
 			// Loop through all the graphs and render them
 			$('.canvasjs').each(function (i) {
 				if ($(this).data('graphtype') === 'IncompleteDonut') {
-					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'))
+					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'));
 				} else {
 					if ($('.canvasjs-settings').length > 0) {
 						$colorset = $('.canvasjs-settings').data('colorset');
@@ -24,7 +27,11 @@ var graphs = {
 						graphs.fontcolor = $('.canvasjs-settings').data('fontcolor');
 						graphs.fontweight = $('.canvasjs-settings').data('fontweight');
 					}
-					graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'))
+					if ($(this).attr('data-stats') !== undefined) {
+						graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'));
+					} else {
+						graphs.drawAlternate($(this).attr('id'), $(this).data('graphtype'), $(this).data('title'));
+					}
 				}
 			});
 		}
@@ -37,6 +44,51 @@ var graphs = {
 			$colorSetString.push('' + val + '');
 		});
 		graphs.colorset = $colorSetString;
+	},
+
+	drawAlternate: function (graphid, graphtype, title) {
+		var graphdata=[];
+		$('#'+graphid).find('div.graphdata').each(function (i) {
+			var stats = {
+				label: $(this).data('label'),
+			};
+			if ($(this).attr('data-color') !== undefined) {
+				stats.color = $(this).data('color');
+			}
+
+			if ($(this).attr('data-y') !== undefined) {
+				stats.y = $(this).data('y');
+			}
+
+			if ($(this).attr('data-x') !== undefined) {
+				stats.x = $(this).data('x');
+			}
+			graphdata.push(stats);
+		});
+		var jsongraphdata = JSON.stringify(graphdata);
+		console.log(graphdata);
+		console.log(jsongraphdata);
+
+		CanvasJS.addColorSet(graphs.colorsetname, graphs.colorset);
+
+		var chart = new CanvasJS.Chart(graphid, {
+			backgroundColor: 'transparent',
+			colorSet: graphs.colorsetname,
+			title: {
+				text: title,
+				fontSize: graphs.fontsize,
+				fontFamily: graphs.fontfamily,
+				fontColor: graphs.fontcolor,
+				fontWeight: graphs.fontweight
+			},
+			data: [{
+				type: graphtype,
+				startAngle: 20,
+				dataPoints: $.parseJSON(jsongraphdata)
+			}]
+		});
+
+		chart.render();
 	},
 
 	draw: function (graphid, graphtype, indataurl, title) {
@@ -80,7 +132,7 @@ var graphs = {
 				enabled: false,
 			},
 			data: [{
-				type: "doughnut",
+				type: 'doughnut',
 				startAngle: 90,
 				dataPoints: [{
 					y: value,
@@ -97,5 +149,4 @@ var graphs = {
 		chart.render();
 		$('#' + graphid + '-total').html(value + '%');
 	}
-
-}
+};

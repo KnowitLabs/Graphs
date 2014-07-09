@@ -1,4 +1,4 @@
-Graphs Component 0.9.6
+Graphs Component 1.0.0
 ======
 
 This is a CanvasJS Implementation made to simplify the use of CanvasJS in web projects.
@@ -32,7 +32,7 @@ In this first release the JSON data is very simple and not much can be modified.
 * Y coordinate
 * color
 * Label
-``` 
+```
   [{
   	"label": "Playstation",
   	"y": 357,
@@ -49,6 +49,15 @@ In this first release the JSON data is very simple and not much can be modified.
   	"x": 30,
   	"color": ""
   }]
+```
+
+####Alternative using data attributes
+```
+<div class="canvasjs" id="graph5" data-graphtype="column" data-title="Title of graph">
+  <div class="graphdata" data-label="Playstation" data-y="357" data-x="10" data-color="#003d59"></div>
+  <div class="graphdata" data-label="Xbox" data-y="400" data-x="10" data-color="#118baf"></div>
+  <div class="graphdata" data-label="Nintendo" data-y="1358" data-x="10" data-color="#26a489"></div>
+</div>
 ```
 
 ####Exception "Gaping" Donut Chart
