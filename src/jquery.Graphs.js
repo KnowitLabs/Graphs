@@ -5,25 +5,28 @@ var graphs = {
 	colorsetname: 'default',
 	colorset: null,
 	fontweight: 'normal',
+	bacakgroundcolor: 'transparent',
 
 	init: function () {
 		// Only init if a graph is detected.
 		if ($('.canvasjs').length > 0) {
+
+			if ($('.canvasjs-settings').length > 0) {
+				$colorset = $('.canvasjs-settings').data('colorset');
+				graphs.colorsetname = $('.canvasjs-settings').data('colorsetname');
+				graphs.createColorset($colorset);
+				graphs.bacakgroundcolor = $('.canvasjs-settings').data('bacakgroundcolor');
+				graphs.fontsize = $('.canvasjs-settings').data('fontsize');
+				graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
+				graphs.fontcolor = $('.canvasjs-settings').data('fontcolor');
+				graphs.fontweight = $('.canvasjs-settings').data('fontweight');
+			}
 
 			// Loop through all the graphs and render them
 			$('.canvasjs').each(function (i) {
 				if ($(this).data('graphtype') === 'IncompleteDonut') {
 					graphs.drawIncompleteDonut($(this).attr('id'), $(this).data('value'), $(this).data('color'));
 				} else {
-					if ($('.canvasjs-settings').length > 0) {
-						$colorset = $('.canvasjs-settings').data('colorset');
-						graphs.colorsetname = $('.canvasjs-settings').data('colorsetname');
-						graphs.createColorset($colorset);
-						graphs.fontsize = $('.canvasjs-settings').data('fontsize');
-						graphs.fontfamily = $('.canvasjs-settings').data('fontfamily');
-						graphs.fontcolor = $('.canvasjs-settings').data('fontcolor');
-						graphs.fontweight = $('.canvasjs-settings').data('fontweight');
-					}
 					if ($(this).attr('data-stats') !== undefined) {
 						graphs.draw($(this).attr('id'), $(this).data('graphtype'), $(this).data('stats'), $(this).data('title'));
 					} else {
@@ -67,7 +70,7 @@ var graphs = {
 		CanvasJS.addColorSet(graphs.colorsetname, graphs.colorset);
 
 		var chart = new CanvasJS.Chart(graphid, {
-			backgroundColor: 'transparent',
+			backgroundColor: graphs.bacakgroundcolor,
 			colorSet: graphs.colorsetname,
 			title: {
 				text: title,
@@ -95,7 +98,7 @@ var graphs = {
 			CanvasJS.addColorSet(graphs.colorsetname, graphs.colorset);
 
 			var chart = new CanvasJS.Chart(graphid, {
-				backgroundColor: 'transparent',
+				backgroundColor: graphs.bacakgroundcolor,
 				colorSet: graphs.colorsetname,
 				title: {
 					text: title,
@@ -122,7 +125,7 @@ var graphs = {
 	// Only used to draw an incomplete donut, so only pass ONE value to this
 	drawIncompleteDonut: function (graphid, value, color) {
 		var chart = new CanvasJS.Chart(graphid, {
-			backgroundColor: 'transparent',
+			backgroundColor: graphs.bacakgroundcolor,
 			toolTip: {
 				enabled: false,
 			},
@@ -136,7 +139,7 @@ var graphs = {
 				}, {
 					y: (100 - value),
 					indexLabel: null,
-					color: 'transparent'
+					color: graphs.bacakgroundcolor
 				}]
 			}]
 		});

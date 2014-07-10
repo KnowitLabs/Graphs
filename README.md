@@ -1,4 +1,4 @@
-Graphs Component 1.0.0
+Graphs Component 1.0.1
 ======
 
 This is a CanvasJS Implementation made to simplify the use of CanvasJS in web projects.
@@ -8,7 +8,7 @@ The script search the soruce for divs with the CSS class "canvasjs" and reads th
 
 ####General settings
 ```
-<input type="hidden" class="canvasjs-settings" data-colorsetname="default" data-fontsize="20" data-fontfamily="Arial" data-colorset="#003d59,#ecc500,#d3693b,#a6bbc5,#4c778a,#26a489,#dc825a,#118baf,#419dbe,#62b29d,#333332" />
+<input type="hidden" class="canvasjs-settings" data-colorsetname="default" data-bacakgroundcolor="#ffffff" data-fontsize="20" data-fontfamily="Arial" data-colorset="#003d59,#ecc500,#d3693b,#a6bbc5,#4c778a,#26a489,#dc825a,#118baf,#419dbe,#62b29d,#333332" />
 ```
 * class: Must be set to "canvasjs-settings" in order to the script to identify the element.
 * data-fontsize: Font size, integer value
@@ -77,5 +77,12 @@ Note that CanvasJS is **not** open source. It's under a [different license](http
 http://canvasjs.com
 
 ###Version History
+####1.0.1
+* Added support for background-color as ```transparent``` doesn't work in IE8
+* Removed ```console.log```
+
+####1.0.0
+* Added support for alternative graphdata loading using data attributes
+
 ####0.9
 Initial release.
