@@ -63,8 +63,6 @@ var graphs = {
 			graphdata.push(stats);
 		});
 		var jsongraphdata = JSON.stringify(graphdata);
-		console.log(graphdata);
-		console.log(jsongraphdata);
 
 		CanvasJS.addColorSet(graphs.colorsetname, graphs.colorset);
 
